@@ -1,0 +1,191 @@
+{
+  "version": "31.0.0",
+  "artifacts": {
+    "assembly-CdkPipelineSimulatedCorporateNetworkStack-test-env": {
+      "type": "cdk:cloud-assembly",
+      "properties": {
+        "directoryName": "assembly-CdkPipelineSimulatedCorporateNetworkStack-test-env",
+        "displayName": "CdkPipelineSimulatedCorporateNetworkStack/test-env"
+      }
+    },
+    "CdkPipelineSimulatedCorporateNetworkStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkPipelineSimulatedCorporateNetworkStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkPipelineSimulatedCorporateNetworkStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://619831221558/eu-central-1",
+      "properties": {
+        "templateFile": "CdkPipelineSimulatedCorporateNetworkStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/4acd7bf2c1ddac990d3f4c5b16e608dd7f2c1ccdef917a488c4c3fdf66ab6e56.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkPipelineSimulatedCorporateNetworkStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-lookup-role-619831221558-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CdkPipelineSimulatedCorporateNetworkStack.assets"
+      ],
+      "metadata": {
+        "/CdkPipelineSimulatedCorporateNetworkStack/Simulated-network/CdkPipelineSimulatedCorporateNetworkStacksimulatednetworkPipelineDEA47660-main-EventRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SimulatednetworkCdkPipelineSimulatedCorporateNetworkStacksimulatednetworkPipelineDEA47660mainEventRuleDDD6F8AB"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucketEncryptionKey/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucketEncryptionKeyAlias/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineArtifactsBucketEncryptionKeyAlias4ECF48C5"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineArtifactsBucket03AF5397"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineArtifactsBucketPolicy3A6ABEBF"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineRoleC325D493"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineRoleDefaultPolicy6B869BD5"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipeline26CD52AE"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Source/simulated-network/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRole2A1C8B3A"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Source/simulated-network/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRoleDefaultPolicyE51455DA"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineEventsRoleFCE6F1FC"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineEventsRoleDefaultPolicy162DBAE5"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Build/Synth/CdkBuildProject/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineBuildSynthCdkBuildProjectRole9FEAF67A"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineBuildSynthCdkBuildProjectRoleDefaultPolicy8A0F9141"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Build/Synth/CdkBuildProject/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/CodeBuildActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkCodeBuildActionRole21BE4C46"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/CodeBuildActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkCodeBuildActionRoleDefaultPolicy89909E47"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/UpdatePipeline/SelfMutation/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkUpdatePipelineSelfMutationRoleF865988F"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkUpdatePipelineSelfMutationRoleDefaultPolicyA627A001"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/simulated-network/UpdatePipeline/SelfMutation/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "simulatednetworkUpdatePipelineSelfMutation236C3959"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkPipelineSimulatedCorporateNetworkStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

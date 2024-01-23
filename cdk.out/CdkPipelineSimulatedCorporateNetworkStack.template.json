@@ -1,0 +1,1231 @@
+{
+ "Resources": {
+  "SimulatednetworkCdkPipelineSimulatedCorporateNetworkStacksimulatednetworkPipelineDEA47660mainEventRuleDDD6F8AB": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "EventPattern": {
+     "source": [
+      "aws.codecommit"
+     ],
+     "resources": [
+      "arn:aws:codecommit:eu-central-1:619831221558:simulated-network"
+     ],
+     "detail-type": [
+      "CodeCommit Repository State Change"
+     ],
+     "detail": {
+      "event": [
+       "referenceCreated",
+       "referenceUpdated"
+      ],
+      "referenceName": [
+       "main"
+      ]
+     }
+    },
+    "State": "ENABLED",
+    "Targets": [
+     {
+      "Arn": {
+       "Fn::Join": [
+        "",
+        [
+         "arn:aws:codepipeline:eu-central-1:619831221558:",
+         {
+          "Ref": "simulatednetworkPipeline26CD52AE"
+         }
+        ]
+       ]
+      },
+      "Id": "Target0",
+      "RoleArn": {
+       "Fn::GetAtt": [
+        "simulatednetworkPipelineEventsRoleFCE6F1FC",
+        "Arn"
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/Simulated-network/CdkPipelineSimulatedCorporateNetworkStacksimulatednetworkPipelineDEA47660-main-EventRule/Resource"
+   }
+  },
+  "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C": {
+   "Type": "AWS::KMS::Key",
+   "Properties": {
+    "KeyPolicy": {
+     "Statement": [
+      {
+       "Action": "kms:*",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::619831221558:root"
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucketEncryptionKey/Resource"
+   }
+  },
+  "simulatednetworkPipelineArtifactsBucketEncryptionKeyAlias4ECF48C5": {
+   "Type": "AWS::KMS::Alias",
+   "Properties": {
+    "AliasName": "alias/codepipeline-cdkpipelinesimulatedcorporatenetworkstack-simulated-network-pipeline-dea47660",
+    "TargetKeyId": {
+     "Fn::GetAtt": [
+      "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+      "Arn"
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucketEncryptionKeyAlias/Resource"
+   }
+  },
+  "simulatednetworkPipelineArtifactsBucket03AF5397": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "KMSMasterKeyID": {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+          "Arn"
+         ]
+        },
+        "SSEAlgorithm": "aws:kms"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucket/Resource"
+   }
+  },
+  "simulatednetworkPipelineArtifactsBucketPolicy3A6ABEBF": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "simulatednetworkPipelineArtifactsBucket03AF5397"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucket03AF5397",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "simulatednetworkPipelineArtifactsBucket03AF5397",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucket03AF5397",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "simulatednetworkPipelineArtifactsBucket03AF5397",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/ArtifactsBucket/Policy/Resource"
+   }
+  },
+  "simulatednetworkPipelineRoleC325D493": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Role/Resource"
+   }
+  },
+  "simulatednetworkPipelineRoleDefaultPolicy6B869BD5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:Abort*",
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucket03AF5397",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "simulatednetworkPipelineArtifactsBucket03AF5397",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*",
+        "kms:ReEncrypt*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkCodeBuildActionRole21BE4C46",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRole2A1C8B3A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "simulatednetworkPipelineRoleDefaultPolicy6B869BD5",
+    "Roles": [
+     {
+      "Ref": "simulatednetworkPipelineRoleC325D493"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Role/DefaultPolicy/Resource"
+   }
+  },
+  "simulatednetworkPipeline26CD52AE": {
+   "Type": "AWS::CodePipeline::Pipeline",
+   "Properties": {
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "simulatednetworkPipelineRoleC325D493",
+      "Arn"
+     ]
+    },
+    "Stages": [
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Source",
+         "Owner": "AWS",
+         "Provider": "CodeCommit",
+         "Version": "1"
+        },
+        "Configuration": {
+         "RepositoryName": "simulated-network",
+         "BranchName": "main",
+         "PollForSourceChanges": false
+        },
+        "Name": "simulated-network",
+        "OutputArtifacts": [
+         {
+          "Name": "simulated_network_Source"
+         }
+        ],
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRole2A1C8B3A",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Source"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
+         },
+         "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"8779a2d9fc5684d368ab04b280a00af90916125e0e3471109f961f7002c55dc7\"}]"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "simulated_network_Source"
+         }
+        ],
+        "Name": "Synth",
+        "OutputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "simulatednetworkCodeBuildActionRole21BE4C46",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "Build"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Build",
+         "Owner": "AWS",
+         "Provider": "CodeBuild",
+         "Version": "1"
+        },
+        "Configuration": {
+         "ProjectName": {
+          "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
+         },
+         "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"d0f84d36f853b6cd42f471de216051f1f69fc8fc783a369de2e2ac016ac7254d\"}]"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "SelfMutate",
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "simulatednetworkCodeBuildActionRole21BE4C46",
+          "Arn"
+         ]
+        },
+        "RunOrder": 1
+       }
+      ],
+      "Name": "UpdatePipeline"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "test-env-Network",
+         "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+         "RoleArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1"
+           ]
+          ]
+         },
+         "ActionMode": "CHANGE_SET_REPLACE",
+         "ChangeSetName": "PipelineChange",
+         "TemplatePath": "Synth_Output::assembly-CdkPipelineSimulatedCorporateNetworkStack-test-env/CdkPipelineSimulatedCorporateNetworkStacktestenvNetwork89EF0C0F.template.json"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "Prepare",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "test-env-Network",
+         "ActionMode": "CHANGE_SET_EXECUTE",
+         "ChangeSetName": "PipelineChange"
+        },
+        "Name": "Deploy",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        },
+        "RunOrder": 2
+       }
+      ],
+      "Name": "test-env"
+     }
+    ],
+    "ArtifactStore": {
+     "EncryptionKey": {
+      "Id": {
+       "Fn::GetAtt": [
+        "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+        "Arn"
+       ]
+      },
+      "Type": "KMS"
+     },
+     "Location": {
+      "Ref": "simulatednetworkPipelineArtifactsBucket03AF5397"
+     },
+     "Type": "S3"
+    },
+    "Name": "simulated-network",
+    "RestartExecutionOnUpdate": true
+   },
+   "DependsOn": [
+    "simulatednetworkPipelineRoleDefaultPolicy6B869BD5",
+    "simulatednetworkPipelineRoleC325D493"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Resource"
+   }
+  },
+  "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRole2A1C8B3A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::619831221558:root"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Source/simulated-network/CodePipelineActionRole/Resource"
+   }
+  },
+  "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRoleDefaultPolicyE51455DA": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:Abort*",
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucket03AF5397",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "simulatednetworkPipelineArtifactsBucket03AF5397",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*",
+        "kms:ReEncrypt*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "codecommit:CancelUploadArchive",
+        "codecommit:GetBranch",
+        "codecommit:GetCommit",
+        "codecommit:GetUploadArchiveStatus",
+        "codecommit:UploadArchive"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:codecommit:eu-central-1:619831221558:simulated-network"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRoleDefaultPolicyE51455DA",
+    "Roles": [
+     {
+      "Ref": "simulatednetworkPipelineSourcesimulatednetworkCodePipelineActionRole2A1C8B3A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Source/simulated-network/CodePipelineActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "simulatednetworkPipelineEventsRoleFCE6F1FC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "events.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/EventsRole/Resource"
+   }
+  },
+  "simulatednetworkPipelineEventsRoleDefaultPolicy162DBAE5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "codepipeline:StartPipelineExecution",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:codepipeline:eu-central-1:619831221558:",
+          {
+           "Ref": "simulatednetworkPipeline26CD52AE"
+          }
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "simulatednetworkPipelineEventsRoleDefaultPolicy162DBAE5",
+    "Roles": [
+     {
+      "Ref": "simulatednetworkPipelineEventsRoleFCE6F1FC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/EventsRole/DefaultPolicy/Resource"
+   }
+  },
+  "simulatednetworkPipelineBuildSynthCdkBuildProjectRole9FEAF67A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Build/Synth/CdkBuildProject/Role/Resource"
+   }
+  },
+  "simulatednetworkPipelineBuildSynthCdkBuildProjectRoleDefaultPolicy8A0F9141": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           {
+            "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
+           },
+           ":*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           {
+            "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
+           }
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:BatchPutCodeCoverages",
+        "codebuild:BatchPutTestCases",
+        "codebuild:CreateReport",
+        "codebuild:CreateReportGroup",
+        "codebuild:UpdateReport"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:codebuild:eu-central-1:619831221558:report-group/",
+          {
+           "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:Abort*",
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucket03AF5397",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "simulatednetworkPipelineArtifactsBucket03AF5397",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*",
+        "kms:ReEncrypt*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "simulatednetworkPipelineBuildSynthCdkBuildProjectRoleDefaultPolicy8A0F9141",
+    "Roles": [
+     {
+      "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProjectRole9FEAF67A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Build/Synth/CdkBuildProject/Role/DefaultPolicy/Resource"
+   }
+  },
+  "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:6.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "simulatednetworkPipelineBuildSynthCdkBuildProjectRole9FEAF67A",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"npm install -g aws-cdk\",\n        \"python -m pip install -r requirements.txt\",\n        \"cdk synth\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"base-directory\": \"cdk.out\",\n    \"files\": \"**/*\"\n  }\n}",
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step CdkPipelineSimulatedCorporateNetworkStack/Pipeline/Build/Synth",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/Build/Synth/CdkBuildProject/Resource"
+   }
+  },
+  "simulatednetworkCodeBuildActionRole21BE4C46": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "Bool": {
+         "aws:ViaAWSService": "codepipeline.amazonaws.com"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::619831221558:root"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/CodeBuildActionRole/Resource"
+   }
+  },
+  "simulatednetworkCodeBuildActionRoleDefaultPolicy89909E47": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild",
+        "codebuild:StopBuild"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkUpdatePipelineSelfMutation236C3959",
+          "Arn"
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "simulatednetworkCodeBuildActionRoleDefaultPolicy89909E47",
+    "Roles": [
+     {
+      "Ref": "simulatednetworkCodeBuildActionRole21BE4C46"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/CodeBuildActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "simulatednetworkUpdatePipelineSelfMutationRoleF865988F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/UpdatePipeline/SelfMutation/Role/Resource"
+   }
+  },
+  "simulatednetworkUpdatePipelineSelfMutationRoleDefaultPolicyA627A001": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           {
+            "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
+           },
+           ":*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           {
+            "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
+           }
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:BatchPutCodeCoverages",
+        "codebuild:BatchPutTestCases",
+        "codebuild:CreateReport",
+        "codebuild:CreateReportGroup",
+        "codebuild:UpdateReport"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:codebuild:eu-central-1:619831221558:report-group/",
+          {
+           "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Condition": {
+        "ForAnyValue:StringEquals": {
+         "iam:ResourceTag/aws-cdk:bootstrap-role": [
+          "image-publishing",
+          "file-publishing",
+          "deploy"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": "arn:*:iam::619831221558:role/*"
+      },
+      {
+       "Action": [
+        "cloudformation:DescribeStacks",
+        "s3:ListBucket"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "simulatednetworkPipelineArtifactsBucket03AF5397",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "simulatednetworkPipelineArtifactsBucket03AF5397",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*",
+        "kms:ReEncrypt*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "simulatednetworkUpdatePipelineSelfMutationRoleDefaultPolicyA627A001",
+    "Roles": [
+     {
+      "Ref": "simulatednetworkUpdatePipelineSelfMutationRoleF865988F"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource"
+   }
+  },
+  "simulatednetworkUpdatePipelineSelfMutation236C3959": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "CODEPIPELINE"
+    },
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "Image": "aws/codebuild/standard:6.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": false,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "simulatednetworkUpdatePipelineSelfMutationRoleF865988F",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy CdkPipelineSimulatedCorporateNetworkStack --require-approval=never --verbose\"\n      ]\n    }\n  }\n}",
+     "Type": "CODEPIPELINE"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "Description": "Pipeline step CdkPipelineSimulatedCorporateNetworkStack/Pipeline/UpdatePipeline/SelfMutate",
+    "EncryptionKey": {
+     "Fn::GetAtt": [
+      "simulatednetworkPipelineArtifactsBucketEncryptionKeyBD8D0D6C",
+      "Arn"
+     ]
+    },
+    "Name": "simulated-network-selfupdate"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/UpdatePipeline/SelfMutation/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QSw7CMAxEz9K9a75CYgks2VTlAKikRpimSdUkoCrK3Wn6UVm98diWJ9ni4YjrpPiaVJRVKvmB/mYLUUFORrtWEPS9u6cPKWvQ504SXJ4qMoDQJTXckGRF6LNJxf6sA1R1v3alLroRJ8mFicUgApgd+rMTFdloTmpEpiWLbrHHOgAXdZ9ET0kil8l5JkZ7OJblkitr9ZvEcGaSIcAc3+Cl3/h/wvwBAbLOvrRa7XCzwX3yNsxp65TlmjAf+QOk9j7PRwEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
