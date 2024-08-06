@@ -17,7 +17,7 @@
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/32b2aee9c04b33758427968392ef6ffe698e31961778f244a61bb4b1cd4172a8.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/5e8e8fdb9424d8fbbf5a75d7b1728ffc8e823a2314684159404b8c3da71a53d5.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -94,22 +94,70 @@
             "data": "BackupVPCVPCGWDAED08E9"
           }
         ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/CustomerGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPCStaticCustomerGatewayF23409EF"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPCStatic70F6DD4B"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Route1921683110132": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPCStaticRoute1921683110132DF3F7B1D"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPCVpnGateway3810F727"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VPCVPNGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPCVPCVPNGW49A5B08B"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/RoutePropagation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPCRoutePropagationB1CE6F63"
+          }
+        ],
         "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupSG/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackupSG64CB4D7C"
           }
         ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/MyCfnVPNGateway": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "MyCfnVPNGateway"
-          }
-        ],
         "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports/Output{\"Ref\":\"BackupVPC91AA08F9\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefBackupVPC91AA08F9CEDED641"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports/Output{\"Fn::GetAtt\":[\"BackupSG64CB4D7C\",\"GroupId\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttBackupSG64CB4D7CGroupIdD0CDA928"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports/Output{\"Ref\":\"BackupVPCprivateSubnet1SubnetA9E26BCE\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefBackupVPCprivateSubnet1SubnetA9E26BCE9289B6CA"
           }
         ],
         "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BootstrapVersion": [
@@ -126,6 +174,109 @@
         ]
       },
       "displayName": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network"
+    },
+    "CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://619831221558/eu-central-1",
+      "properties": {
+        "templateFile": "CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.template.json",
+        "validateOnSynth": true,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/6d846cad8ea5c7edf66751d21f97624a854a1e152ff7f7c477ba71de9ebdd3fe.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-lookup-role-619831221558-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        },
+        "stackName": "test-env-DnacServer"
+      },
+      "dependencies": [
+        "CdkPipelineSimulatedCorporateNetworkStacktestenvNetwork89EF0C0F",
+        "CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.assets"
+      ],
+      "metadata": {
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupRoleF43CFD90"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupRoleDefaultPolicy94E594AC"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/VPCFlowLogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCFlowLogGroup9559E1E7"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/VPCFlowLog/FlowLog": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCFlowLog8FA5601E"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/UserString.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserStringParameter"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupInstance/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupInstanceInstanceProfile0DEB8E12"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupInstance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupInstance49644235"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer"
     }
   }
 }

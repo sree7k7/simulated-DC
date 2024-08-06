@@ -15,14 +15,14 @@ class Stage(cdk.Stage):
             'Network',
             config = config
         )
-        # ec2 = EC2(
-        #     self,
-        #     "DnacServer",
-        #     vpc = network.vpc,
+        ec2 = EC2(
+            self,
+            "DnacServer",
+            vpc = network.vpc,
 
-        #     config = config,
+            config = config,
 
-        #     sg_group = network.sg_group         
-        # )    
+            sg_group = network.sg_group         
+        )   
 
 

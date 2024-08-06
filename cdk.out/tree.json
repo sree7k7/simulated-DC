@@ -610,7 +610,7 @@
                             "name": "test-env",
                             "actions": [
                               {
-                                "name": "Prepare",
+                                "name": "Network.Prepare",
                                 "inputArtifacts": [
                                   {
                                     "name": "Synth_Output"
@@ -656,7 +656,7 @@
                                 }
                               },
                               {
-                                "name": "Deploy",
+                                "name": "Network.Deploy",
                                 "actionTypeId": {
                                   "category": "Deploy",
                                   "version": "1",
@@ -669,6 +669,79 @@
                                   "ChangeSetName": "PipelineChange"
                                 },
                                 "runOrder": 2,
+                                "roleArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+                                    ]
+                                  ]
+                                }
+                              },
+                              {
+                                "name": "DnacServer.Prepare",
+                                "inputArtifacts": [
+                                  {
+                                    "name": "Synth_Output"
+                                  }
+                                ],
+                                "actionTypeId": {
+                                  "category": "Deploy",
+                                  "version": "1",
+                                  "owner": "AWS",
+                                  "provider": "CloudFormation"
+                                },
+                                "configuration": {
+                                  "StackName": "test-env-DnacServer",
+                                  "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+                                  "RoleArn": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1"
+                                      ]
+                                    ]
+                                  },
+                                  "ActionMode": "CHANGE_SET_REPLACE",
+                                  "ChangeSetName": "PipelineChange",
+                                  "TemplatePath": "Synth_Output::assembly-CdkPipelineSimulatedCorporateNetworkStack-test-env/CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.template.json"
+                                },
+                                "runOrder": 3,
+                                "roleArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+                                    ]
+                                  ]
+                                }
+                              },
+                              {
+                                "name": "DnacServer.Deploy",
+                                "actionTypeId": {
+                                  "category": "Deploy",
+                                  "version": "1",
+                                  "owner": "AWS",
+                                  "provider": "CloudFormation"
+                                },
+                                "configuration": {
+                                  "StackName": "test-env-DnacServer",
+                                  "ActionMode": "CHANGE_SET_EXECUTE",
+                                  "ChangeSetName": "PipelineChange"
+                                },
+                                "runOrder": 4,
                                 "roleArn": {
                                   "Fn::Join": [
                                     "",
@@ -861,13 +934,13 @@
                         },
                         "constructInfo": {
                           "fqn": "constructs.Construct",
-                          "version": "10.1.283"
+                          "version": "10.3.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "constructs.Construct",
-                      "version": "10.1.283"
+                      "version": "10.3.0"
                     }
                   },
                   "EventsRole": {
@@ -1211,13 +1284,13 @@
                         },
                         "constructInfo": {
                           "fqn": "constructs.Construct",
-                          "version": "10.1.283"
+                          "version": "10.3.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "constructs.Construct",
-                      "version": "10.1.283"
+                      "version": "10.3.0"
                     }
                   },
                   "UpdatePipeline": {
@@ -1229,39 +1302,55 @@
                         "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/UpdatePipeline/SelfMutate",
                         "constructInfo": {
                           "fqn": "constructs.Construct",
-                          "version": "10.1.283"
+                          "version": "10.3.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "constructs.Construct",
-                      "version": "10.1.283"
+                      "version": "10.3.0"
                     }
                   },
                   "test-env": {
                     "id": "test-env",
                     "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env",
                     "children": {
-                      "Prepare": {
-                        "id": "Prepare",
-                        "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env/Prepare",
+                      "Network.Prepare": {
+                        "id": "Network.Prepare",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env/Network.Prepare",
                         "constructInfo": {
                           "fqn": "constructs.Construct",
-                          "version": "10.1.283"
+                          "version": "10.3.0"
                         }
                       },
-                      "Deploy": {
-                        "id": "Deploy",
-                        "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env/Deploy",
+                      "Network.Deploy": {
+                        "id": "Network.Deploy",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env/Network.Deploy",
                         "constructInfo": {
                           "fqn": "constructs.Construct",
-                          "version": "10.1.283"
+                          "version": "10.3.0"
+                        }
+                      },
+                      "DnacServer.Prepare": {
+                        "id": "DnacServer.Prepare",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env/DnacServer.Prepare",
+                        "constructInfo": {
+                          "fqn": "constructs.Construct",
+                          "version": "10.3.0"
+                        }
+                      },
+                      "DnacServer.Deploy": {
+                        "id": "DnacServer.Deploy",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/test-env/DnacServer.Deploy",
+                        "constructInfo": {
+                          "fqn": "constructs.Construct",
+                          "version": "10.3.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "constructs.Construct",
-                      "version": "10.1.283"
+                      "version": "10.3.0"
                     }
                   },
                   "MutableRolearn:${AWS::Partition}:iam::619831221558:role--cdk-hnb659fds-deploy-role-619831221558-eu-central-1": {
@@ -1281,7 +1370,7 @@
                         "path": "CdkPipelineSimulatedCorporateNetworkStack/simulated-network/Pipeline/arn:${AWS::Partition}:iam::619831221558:role--cdk-hnb659fds-deploy-role-619831221558-eu-central-1/8389e75f-0810-4838-bf64-d6f85a95cf83",
                         "constructInfo": {
                           "fqn": "constructs.Construct",
-                          "version": "10.1.283"
+                          "version": "10.3.0"
                         }
                       }
                     },
@@ -1677,7 +1766,7 @@
                 },
                 "constructInfo": {
                   "fqn": "constructs.Construct",
-                  "version": "10.1.283"
+                  "version": "10.3.0"
                 }
               }
             },
@@ -1962,6 +2051,152 @@
                           "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
                           "version": "2.69.0"
                         }
+                      },
+                      "Static": {
+                        "id": "Static",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static",
+                        "children": {
+                          "CustomerGateway": {
+                            "id": "CustomerGateway",
+                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/CustomerGateway",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::CustomerGateway",
+                              "aws:cdk:cloudformation:props": {
+                                "bgpAsn": 65000,
+                                "ipAddress": "83.221.156.77",
+                                "type": "ipsec.1",
+                                "tags": [
+                                  {
+                                    "key": "Name",
+                                    "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnCustomerGateway",
+                              "version": "2.69.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnection",
+                              "aws:cdk:cloudformation:props": {
+                                "customerGatewayId": {
+                                  "Ref": "BackupVPCStaticCustomerGatewayF23409EF"
+                                },
+                                "type": "ipsec.1",
+                                "staticRoutesOnly": true,
+                                "tags": [
+                                  {
+                                    "key": "Name",
+                                    "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
+                                  }
+                                ],
+                                "vpnGatewayId": {
+                                  "Ref": "BackupVPCVpnGateway3810F727"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnVPNConnection",
+                              "version": "2.69.0"
+                            }
+                          },
+                          "Route1921683110132": {
+                            "id": "Route1921683110132",
+                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Route1921683110132",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnectionRoute",
+                              "aws:cdk:cloudformation:props": {
+                                "destinationCidrBlock": "192.168.31.101/32",
+                                "vpnConnectionId": {
+                                  "Ref": "BackupVPCStatic70F6DD4B"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnVPNConnectionRoute",
+                              "version": "2.69.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.VpnConnection",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "VpnGateway": {
+                        "id": "VpnGateway",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway",
+                        "children": {
+                          "Default": {
+                            "id": "Default",
+                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway/Default",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::VPNGateway",
+                              "aws:cdk:cloudformation:props": {
+                                "type": "ipsec.1",
+                                "tags": [
+                                  {
+                                    "key": "Name",
+                                    "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnVPNGateway",
+                              "version": "2.69.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.VpnGateway",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "VPCVPNGW": {
+                        "id": "VPCVPNGW",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VPCVPNGW",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "BackupVPC91AA08F9"
+                            },
+                            "vpnGatewayId": {
+                              "Ref": "BackupVPCVpnGateway3810F727"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "RoutePropagation": {
+                        "id": "RoutePropagation",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/RoutePropagation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::VPNGatewayRoutePropagation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableIds": [
+                              {
+                                "Ref": "BackupVPCprivateSubnet1RouteTable22C41491"
+                              }
+                            ],
+                            "vpnGatewayId": {
+                              "Ref": "BackupVPCVpnGateway3810F727"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnVPNGatewayRoutePropagation",
+                          "version": "2.69.0"
+                        }
                       }
                     },
                     "constructInfo": {
@@ -2033,27 +2268,6 @@
                       "version": "2.69.0"
                     }
                   },
-                  "MyCfnVPNGateway": {
-                    "id": "MyCfnVPNGateway",
-                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/MyCfnVPNGateway",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::VPNGateway",
-                      "aws:cdk:cloudformation:props": {
-                        "type": "ipsec",
-                        "amazonSideAsn": 65412,
-                        "tags": [
-                          {
-                            "key": "vpnkey",
-                            "value": "vpnvalue"
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPNGateway",
-                      "version": "2.69.0"
-                    }
-                  },
                   "CDKMetadata": {
                     "id": "CDKMetadata",
                     "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata",
@@ -2069,7 +2283,41 @@
                     },
                     "constructInfo": {
                       "fqn": "constructs.Construct",
-                      "version": "10.1.283"
+                      "version": "10.3.0"
+                    }
+                  },
+                  "Exports": {
+                    "id": "Exports",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports",
+                    "children": {
+                      "Output{\"Ref\":\"BackupVPC91AA08F9\"}": {
+                        "id": "Output{\"Ref\":\"BackupVPC91AA08F9\"}",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports/Output{\"Ref\":\"BackupVPC91AA08F9\"}",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnOutput",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "Output{\"Fn::GetAtt\":[\"BackupSG64CB4D7C\",\"GroupId\"]}": {
+                        "id": "Output{\"Fn::GetAtt\":[\"BackupSG64CB4D7C\",\"GroupId\"]}",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports/Output{\"Fn::GetAtt\":[\"BackupSG64CB4D7C\",\"GroupId\"]}",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnOutput",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "Output{\"Ref\":\"BackupVPCprivateSubnet1SubnetA9E26BCE\"}": {
+                        "id": "Output{\"Ref\":\"BackupVPCprivateSubnet1SubnetA9E26BCE\"}",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/Exports/Output{\"Ref\":\"BackupVPCprivateSubnet1SubnetA9E26BCE\"}",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnOutput",
+                          "version": "2.69.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.3.0"
                     }
                   },
                   "BootstrapVersion": {
@@ -2083,6 +2331,376 @@
                   "CheckBootstrapVersion": {
                     "id": "CheckBootstrapVersion",
                     "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CheckBootstrapVersion",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnRule",
+                      "version": "2.69.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Stack",
+                  "version": "2.69.0"
+                }
+              },
+              "DnacServer": {
+                "id": "DnacServer",
+                "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer",
+                "children": {
+                  "BackupRole": {
+                    "id": "BackupRole",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole",
+                    "children": {
+                      "ImportBackupRole": {
+                        "id": "ImportBackupRole",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole/ImportBackupRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": [
+                                      "ec2.amazonaws.com",
+                                      "s2svpn.amazonaws.com",
+                                      "vpc-flow-logs.amazonaws.com"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+                                  ]
+                                ]
+                              },
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/AmazonS3FullAccess"
+                                  ]
+                                ]
+                              },
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/CloudWatchAgentAdminPolicy"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "logs:CreateLogStream",
+                                        "logs:DescribeLogStreams",
+                                        "logs:PutLogEvents"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "VPCFlowLogGroup9559E1E7",
+                                          "Arn"
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "Action": "iam:PassRole",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "BackupRoleF43CFD90",
+                                          "Arn"
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "BackupRoleDefaultPolicy94E594AC",
+                                "roles": [
+                                  {
+                                    "Ref": "BackupRoleF43CFD90"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.69.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.69.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "VPCFlowLogGroup": {
+                    "id": "VPCFlowLogGroup",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/VPCFlowLogGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/VPCFlowLogGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "retentionInDays": 30
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                          "version": "2.69.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "VPCFlowLog": {
+                    "id": "VPCFlowLog",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/VPCFlowLog",
+                    "children": {
+                      "FlowLog": {
+                        "id": "FlowLog",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/VPCFlowLog/FlowLog",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::FlowLog",
+                          "aws:cdk:cloudformation:props": {
+                            "resourceId": {
+                              "Fn::ImportValue": "test-env-Network:ExportsOutputRefBackupVPC91AA08F9CEDED641"
+                            },
+                            "resourceType": "VPC",
+                            "deliverLogsPermissionArn": {
+                              "Fn::GetAtt": [
+                                "BackupRoleF43CFD90",
+                                "Arn"
+                              ]
+                            },
+                            "logDestinationType": "cloud-watch-logs",
+                            "logGroupName": {
+                              "Ref": "VPCFlowLogGroup9559E1E7"
+                            },
+                            "trafficType": "ALL"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnFlowLog",
+                          "version": "2.69.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.FlowLog",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "UserString.Parameter": {
+                    "id": "UserString.Parameter",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/UserString.Parameter",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnParameter",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "UserString": {
+                    "id": "UserString",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/UserString",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "BackupInstance": {
+                    "id": "BackupInstance",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupInstance",
+                    "children": {
+                      "InstanceProfile": {
+                        "id": "InstanceProfile",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupInstance/InstanceProfile",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                          "aws:cdk:cloudformation:props": {
+                            "roles": [
+                              {
+                                "Ref": "BackupRoleF43CFD90"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                          "version": "2.69.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupInstance/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                          "aws:cdk:cloudformation:props": {
+                            "availabilityZone": "eu-central-1a",
+                            "blockDeviceMappings": [
+                              {
+                                "deviceName": "/dev/xvda",
+                                "ebs": {
+                                  "encrypted": true,
+                                  "volumeSize": 10,
+                                  "volumeType": "gp3"
+                                }
+                              },
+                              {
+                                "deviceName": "/dev/sdg",
+                                "ebs": {
+                                  "encrypted": true,
+                                  "volumeSize": 10,
+                                  "volumeType": "gp3"
+                                }
+                              }
+                            ],
+                            "iamInstanceProfile": {
+                              "Ref": "BackupInstanceInstanceProfile0DEB8E12"
+                            },
+                            "imageId": {
+                              "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                            },
+                            "instanceType": "t3a.micro",
+                            "privateIpAddress": "10.4.0.140",
+                            "securityGroupIds": [
+                              {
+                                "Fn::ImportValue": "test-env-Network:ExportsOutputFnGetAttBackupSG64CB4D7CGroupIdD0CDA928"
+                              }
+                            ],
+                            "subnetId": {
+                              "Fn::ImportValue": "test-env-Network:ExportsOutputRefBackupVPCprivateSubnet1SubnetA9E26BCE9289B6CA"
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BackupInstance"
+                              },
+                              {
+                                "key": "shellscript",
+                                "value": "automation"
+                              }
+                            ],
+                            "userData": {
+                              "Fn::Base64": "\n            #!/bin/bash      \n            sudo timedatectl set-timezone Europe/Copenhagen\n            sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start\n            sudo yum update -y            \n            rm /var/lib/cloud/instance/sem/config_scripts_user\n            "
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                          "version": "2.69.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.Instance",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
+                    "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnParameter",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118": {
+                    "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "CDKMetadata": {
+                    "id": "CDKMetadata",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/CDKMetadata",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/CDKMetadata/Default",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.69.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.3.0"
+                    }
+                  },
+                  "BootstrapVersion": {
+                    "id": "BootstrapVersion",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/BootstrapVersion",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnParameter",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "CheckBootstrapVersion": {
+                    "id": "CheckBootstrapVersion",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/DnacServer/CheckBootstrapVersion",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.CfnRule",
                       "version": "2.69.0"
@@ -2115,7 +2733,7 @@
             },
             "constructInfo": {
               "fqn": "constructs.Construct",
-              "version": "10.1.283"
+              "version": "10.3.0"
             }
           },
           "BootstrapVersion": {
@@ -2145,7 +2763,7 @@
         "path": "Tree",
         "constructInfo": {
           "fqn": "constructs.Construct",
-          "version": "10.1.283"
+          "version": "10.3.0"
         }
       }
     },

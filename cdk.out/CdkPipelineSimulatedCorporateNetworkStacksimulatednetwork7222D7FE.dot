@@ -27,8 +27,17 @@ digraph G {
 "Build.Synth" -> "test-env.Network.Prepare";
 "BEGIN test-env.Network" -> "test-env.Network.Prepare";
 "test-env.Network.Deploy" -> "END test-env.Network";
+"BEGIN test-env.DnacServer" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END test-env.DnacServer" [shape="cds", style="filled", fillcolor="#b7deff"];
+"END test-env.Network" -> "BEGIN test-env.DnacServer";
+"test-env.DnacServer.Deploy";
+"test-env.DnacServer.Prepare" -> "test-env.DnacServer.Deploy";
+"test-env.DnacServer.Prepare";
+"Build.Synth" -> "test-env.DnacServer.Prepare";
+"BEGIN test-env.DnacServer" -> "test-env.DnacServer.Prepare";
+"test-env.DnacServer.Deploy" -> "END test-env.DnacServer";
 "BEGIN test-env" -> "BEGIN test-env.Network";
-"END test-env.Network" -> "END test-env";
+"END test-env.DnacServer" -> "END test-env";
 "BEGIN Source" [shape="cds", style="filled", fillcolor="#b7deff"];
 "END Source" [shape="cds", style="filled", fillcolor="#b7deff"];
 "Source.simulated-network";

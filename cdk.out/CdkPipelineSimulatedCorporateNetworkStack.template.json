@@ -503,7 +503,7 @@
           "Name": "Synth_Output"
          }
         ],
-        "Name": "Prepare",
+        "Name": "Network.Prepare",
         "RoleArn": {
          "Fn::Join": [
           "",
@@ -530,7 +530,7 @@
          "ActionMode": "CHANGE_SET_EXECUTE",
          "ChangeSetName": "PipelineChange"
         },
-        "Name": "Deploy",
+        "Name": "Network.Deploy",
         "RoleArn": {
          "Fn::Join": [
           "",
@@ -544,6 +544,79 @@
          ]
         },
         "RunOrder": 2
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "test-env-DnacServer",
+         "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+         "RoleArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1"
+           ]
+          ]
+         },
+         "ActionMode": "CHANGE_SET_REPLACE",
+         "ChangeSetName": "PipelineChange",
+         "TemplatePath": "Synth_Output::assembly-CdkPipelineSimulatedCorporateNetworkStack-test-env/CdkPipelineSimulatedCorporateNetworkStacktestenvDnacServer6D27D3E5.template.json"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "Synth_Output"
+         }
+        ],
+        "Name": "DnacServer.Prepare",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        },
+        "RunOrder": 3
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "test-env-DnacServer",
+         "ActionMode": "CHANGE_SET_EXECUTE",
+         "ChangeSetName": "PipelineChange"
+        },
+        "Name": "DnacServer.Deploy",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+          ]
+         ]
+        },
+        "RunOrder": 4
        }
       ],
       "Name": "test-env"
@@ -1187,7 +1260,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QSw7CMAxEz9K9a75CYgks2VTlAKikRpimSdUkoCrK3Wn6UVm98diWJ9ni4YjrpPiaVJRVKvmB/mYLUUFORrtWEPS9u6cPKWvQ504SXJ4qMoDQJTXckGRF6LNJxf6sA1R1v3alLroRJ8mFicUgApgd+rMTFdloTmpEpiWLbrHHOgAXdZ9ET0kil8l5JkZ7OJblkitr9ZvEcGaSIcAc3+Cl3/h/wvwBAbLOvrRa7XCzwX3yNsxp65TlmjAf+QOk9j7PRwEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02Q3Q6CMAyFn8X7UhWNiZfqpTcEH8DAqLEyNsM2DVn27jJ+glff6Wmbni3FwxE3q+JrElHVieQS/c0WooacjHatIOh7d08fUtagz50kuDxUZAChK3rzmyQrQp9NKvZnHaBu+rUrddGNOEkuTCwGEcDs0J+dqMlGc1IjMi1ZdIs91gG4aPokekoSuUzOMzFa6VhWS66s1S8Sw5lJhgBzfIOXfuP/CfMHBMg6+9RqvcNtivvVyzAnrVOWG8J85A+MXyCXRwEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/CDKMetadata/Default"

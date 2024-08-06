@@ -12,7 +12,7 @@ aws_elasticloadbalancingv2 as elbv2,
 from aws_cdk import aws_elasticloadbalancingv2_targets as elasticloadbalancingv2_targets
 
 class EC2(Stack):        
-    def __init__(self, scope: Construct, construct_id: str, vpc: object, storage: object, bucket, sg_group, config: object, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, vpc: object, sg_group, config: object, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
         self.role = iam.Role(

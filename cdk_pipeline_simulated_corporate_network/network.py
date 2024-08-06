@@ -91,21 +91,20 @@ class Network(cdk.Stack):
             )
         )
         # Across all tunnels in the account/region
-        # self.all_data_out = ec2.VpnConnection.metric_all_tunnel_data_out()
-        # self.vpn_connection = self.vpc.add_vpn_connection("Static",
-        #         ip=config['network']['CustomerGatewayIP'],
-        #         static_routes=[config['network']['DestinationCIDR']]
-        #     )
+        self.all_data_out = ec2.VpnConnection.metric_all_tunnel_data_out()
+        self.vpn_connection = self.vpc.add_vpn_connection("Static",
+                ip=config['network']['CustomerGatewayIP'],
+                static_routes=[config['network']['DestinationCIDR']]
+            )
 
-        cfn_vPNGateway = ec2.CfnVPNGateway(self, "MyCfnVPNGateway",
-            type="ipsec",
-
-            amazon_side_asn=65412,
-            tags=[CfnTag(
-                key="vpnkey",
-                value="vpnvalue"
-            )]
-        )
+        # cfn_vPNGateway = ec2.CfnVPNGateway(self, "MyCfnVPNGateway",
+        #     type="ipsec.1",
+            
+        #     tags=[CfnTag(
+        #         key="vpnkey",
+        #         value="vpnvalue"
+        #     )]
+        # )
 
 
 ######### VPC endpoints ##########################
