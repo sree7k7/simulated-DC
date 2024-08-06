@@ -182,105 +182,6 @@
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VPCGW"
    }
   },
-  "BackupVPCStaticCustomerGatewayF23409EF": {
-   "Type": "AWS::EC2::CustomerGateway",
-   "Properties": {
-    "BgpAsn": 65000,
-    "IpAddress": "83.221.156.77",
-    "Type": "ipsec.1",
-    "Tags": [
-     {
-      "Key": "Name",
-      "Value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/CustomerGateway"
-   }
-  },
-  "BackupVPCStatic70F6DD4B": {
-   "Type": "AWS::EC2::VPNConnection",
-   "Properties": {
-    "CustomerGatewayId": {
-     "Ref": "BackupVPCStaticCustomerGatewayF23409EF"
-    },
-    "Type": "ipsec.1",
-    "StaticRoutesOnly": true,
-    "Tags": [
-     {
-      "Key": "Name",
-      "Value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
-     }
-    ],
-    "VpnGatewayId": {
-     "Ref": "BackupVPCVpnGateway3810F727"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Resource"
-   }
-  },
-  "BackupVPCStaticRoute1921683110132DF3F7B1D": {
-   "Type": "AWS::EC2::VPNConnectionRoute",
-   "Properties": {
-    "DestinationCidrBlock": "192.168.31.101/32",
-    "VpnConnectionId": {
-     "Ref": "BackupVPCStatic70F6DD4B"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Route1921683110132"
-   }
-  },
-  "BackupVPCVpnGateway3810F727": {
-   "Type": "AWS::EC2::VPNGateway",
-   "Properties": {
-    "Type": "ipsec.1",
-    "Tags": [
-     {
-      "Key": "Name",
-      "Value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway/Default"
-   }
-  },
-  "BackupVPCVPCVPNGW49A5B08B": {
-   "Type": "AWS::EC2::VPCGatewayAttachment",
-   "Properties": {
-    "VpcId": {
-     "Ref": "BackupVPC91AA08F9"
-    },
-    "VpnGatewayId": {
-     "Ref": "BackupVPCVpnGateway3810F727"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VPCVPNGW"
-   }
-  },
-  "BackupVPCRoutePropagationB1CE6F63": {
-   "Type": "AWS::EC2::VPNGatewayRoutePropagation",
-   "Properties": {
-    "RouteTableIds": [
-     {
-      "Ref": "BackupVPCprivateSubnet1RouteTable22C41491"
-     }
-    ],
-    "VpnGatewayId": {
-     "Ref": "BackupVPCVpnGateway3810F727"
-    }
-   },
-   "DependsOn": [
-    "BackupVPCVPCVPNGW49A5B08B"
-   ],
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/RoutePropagation"
-   }
-  },
   "BackupSG64CB4D7C": {
    "Type": "AWS::EC2::SecurityGroup",
    "Properties": {
@@ -330,10 +231,33 @@
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupSG/Resource"
    }
   },
+  "BackupVPN": {
+   "Type": "AWS::EC2::VPNConnection",
+   "Properties": {
+    "CustomerGatewayId": "83.221.156.77",
+    "Type": "ipsec.1",
+    "StaticRoutesOnly": true
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPN"
+   }
+  },
+  "BackupVPNRoute": {
+   "Type": "AWS::EC2::VPNConnectionRoute",
+   "Properties": {
+    "DestinationCidrBlock": "192.168.31.101/32",
+    "VpnConnectionId": {
+     "Ref": "BackupVPN"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPNRoute"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22QQU/DMAyFf8vuaYAyIXGcepi4oKhFvaI0GOattavE2VRN+++EdqNU4pTnT8/PdnL99KzvV/YUMvdxyFps9LkS6w4qoXdwuT7XvVPFJ9WmUCY2LboqNgTyw2ZVchR4s00LM5/ZJgR2aAWZfs3KeDxagTnjhQR80ttET3a4Dr1WG0lb7TogUXVPBROBu+UVMQh34BeNr0vPAkwLpJxlx7/V6DWee/s1HVCBix5l2HqO/XjtX3BRJQSO3o0fcdMXZQbZMd096odcr1f7gJj5SIId6HJ6vwGSqi/riwEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OwarCQAxFv8X9dPRVEVxKF+JGhla6lWnMw9iakZmMUsR/t/bpK7rKzSHk3FTPF3oysteQwL5OGqr0rRALterQDiHVt/IMKvvl0mTKxKohKGLFKE82pNxFwa2tGhz4wJYhOCAr5Pj/WBlPFys4/FizoO/yqqNX276kr20pXavDCVlUgRA9SbvyLp573TcozSZzzAhv4wfo9XeVY3DRQ1/4ne/KtHJwPJ7qn1TPRsdAlPjIQifU+d98AG4UzJ8zAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata/Default"

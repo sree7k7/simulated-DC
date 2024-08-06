@@ -2051,152 +2051,6 @@
                           "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
                           "version": "2.69.0"
                         }
-                      },
-                      "Static": {
-                        "id": "Static",
-                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static",
-                        "children": {
-                          "CustomerGateway": {
-                            "id": "CustomerGateway",
-                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/CustomerGateway",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::EC2::CustomerGateway",
-                              "aws:cdk:cloudformation:props": {
-                                "bgpAsn": 65000,
-                                "ipAddress": "83.221.156.77",
-                                "type": "ipsec.1",
-                                "tags": [
-                                  {
-                                    "key": "Name",
-                                    "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_ec2.CfnCustomerGateway",
-                              "version": "2.69.0"
-                            }
-                          },
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnection",
-                              "aws:cdk:cloudformation:props": {
-                                "customerGatewayId": {
-                                  "Ref": "BackupVPCStaticCustomerGatewayF23409EF"
-                                },
-                                "type": "ipsec.1",
-                                "staticRoutesOnly": true,
-                                "tags": [
-                                  {
-                                    "key": "Name",
-                                    "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
-                                  }
-                                ],
-                                "vpnGatewayId": {
-                                  "Ref": "BackupVPCVpnGateway3810F727"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_ec2.CfnVPNConnection",
-                              "version": "2.69.0"
-                            }
-                          },
-                          "Route1921683110132": {
-                            "id": "Route1921683110132",
-                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Route1921683110132",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnectionRoute",
-                              "aws:cdk:cloudformation:props": {
-                                "destinationCidrBlock": "192.168.31.101/32",
-                                "vpnConnectionId": {
-                                  "Ref": "BackupVPCStatic70F6DD4B"
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_ec2.CfnVPNConnectionRoute",
-                              "version": "2.69.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.VpnConnection",
-                          "version": "2.69.0"
-                        }
-                      },
-                      "VpnGateway": {
-                        "id": "VpnGateway",
-                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway",
-                        "children": {
-                          "Default": {
-                            "id": "Default",
-                            "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway/Default",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::EC2::VPNGateway",
-                              "aws:cdk:cloudformation:props": {
-                                "type": "ipsec.1",
-                                "tags": [
-                                  {
-                                    "key": "Name",
-                                    "value": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC"
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_ec2.CfnVPNGateway",
-                              "version": "2.69.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.VpnGateway",
-                          "version": "2.69.0"
-                        }
-                      },
-                      "VPCVPNGW": {
-                        "id": "VPCVPNGW",
-                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VPCVPNGW",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
-                          "aws:cdk:cloudformation:props": {
-                            "vpcId": {
-                              "Ref": "BackupVPC91AA08F9"
-                            },
-                            "vpnGatewayId": {
-                              "Ref": "BackupVPCVpnGateway3810F727"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
-                          "version": "2.69.0"
-                        }
-                      },
-                      "RoutePropagation": {
-                        "id": "RoutePropagation",
-                        "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/RoutePropagation",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::VPNGatewayRoutePropagation",
-                          "aws:cdk:cloudformation:props": {
-                            "routeTableIds": [
-                              {
-                                "Ref": "BackupVPCprivateSubnet1RouteTable22C41491"
-                              }
-                            ],
-                            "vpnGatewayId": {
-                              "Ref": "BackupVPCVpnGateway3810F727"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnVPNGatewayRoutePropagation",
-                          "version": "2.69.0"
-                        }
                       }
                     },
                     "constructInfo": {
@@ -2265,6 +2119,39 @@
                     },
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "BackupVPN": {
+                    "id": "BackupVPN",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPN",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnection",
+                      "aws:cdk:cloudformation:props": {
+                        "customerGatewayId": "83.221.156.77",
+                        "type": "ipsec.1",
+                        "staticRoutesOnly": true
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPNConnection",
+                      "version": "2.69.0"
+                    }
+                  },
+                  "BackupVPNRoute": {
+                    "id": "BackupVPNRoute",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPNRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnectionRoute",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "192.168.31.101/32",
+                        "vpnConnectionId": {
+                          "Ref": "BackupVPN"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPNConnectionRoute",
                       "version": "2.69.0"
                     }
                   },

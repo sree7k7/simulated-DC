@@ -17,7 +17,7 @@
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/5e8e8fdb9424d8fbbf5a75d7b1728ffc8e823a2314684159404b8c3da71a53d5.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/4b9ba8b1494ba80db7f4d337698d1ce41a02169a9dd8e0bcf4136e1d6861e467.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -94,46 +94,22 @@
             "data": "BackupVPCVPCGWDAED08E9"
           }
         ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/CustomerGateway": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BackupVPCStaticCustomerGatewayF23409EF"
-          }
-        ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BackupVPCStatic70F6DD4B"
-          }
-        ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/Static/Route1921683110132": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BackupVPCStaticRoute1921683110132DF3F7B1D"
-          }
-        ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VpnGateway/Default": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BackupVPCVpnGateway3810F727"
-          }
-        ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/VPCVPNGW": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BackupVPCVPCVPNGW49A5B08B"
-          }
-        ],
-        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPC/RoutePropagation": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BackupVPCRoutePropagationB1CE6F63"
-          }
-        ],
         "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupSG/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackupSG64CB4D7C"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPN": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPN"
+          }
+        ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPNRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackupVPNRoute"
           }
         ],
         "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata/Default": [
