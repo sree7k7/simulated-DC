@@ -95,16 +95,17 @@ class Network(cdk.Stack):
         self.vpn_connection = self.vpc.add_vpn_connection("Static",
                 ip=config['network']['CustomerGatewayIP'],
                 static_routes=[config['network']['DestinationCIDR']]
+                
             )
 
-        # cfn_vPNGateway = ec2.CfnVPNGateway(self, "MyCfnVPNGateway",
-        #     type="ipsec.1",
+        cfn_vPNGateway = ec2.CfnVPNGateway(self, "MyCfnVPNGateway",
+            type="ipsec.1",
             
-        #     tags=[CfnTag(
-        #         key="vpnkey",
-        #         value="vpnvalue"
-        #     )]
-        # )
+            tags=[CfnTag(
+                key="vpnkey",
+                value="vpnvalue"
+            )]
+        )
 
 
 ######### VPC endpoints ##########################
