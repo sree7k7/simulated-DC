@@ -90,22 +90,24 @@ class Network(cdk.Stack):
                 string_representation='TCP'
             )
         )
-        # Across all tunnels in the account/region
-        self.all_data_out = ec2.VpnConnection.metric_all_tunnel_data_out()
-        self.vpn_connection = self.vpc.add_vpn_connection("Static",
-                ip=config['network']['CustomerGatewayIP'],
-                static_routes=[config['network']['DestinationCIDR']]
-                
-            )
-
-        cfn_vPNGateway = ec2.CfnVPNGateway(self, "MyCfnVPNGateway",
-            type="ipsec.1",
-            
-            tags=[CfnTag(
-                key="vpnkey",
-                value="vpnvalue"
-            )]
+        # Across all tunnels in the account/region, the same customer gateway IP address must not be repeated.
+        # Across all tunnels in the account/region, the same destination CIDR must not be repeated.
+        
+        self.vpn = ec2.CfnVPNConnection(
+            self,
+            'BackupVPN',
+            customer_gateway_id=config['network']['CustomerGatewayIP'],
+            static_routes_only=True,
+            type='ipsec.1',
+            # vpn_gateway_id='vgw-0a6c7b1d5c2b0f8c5'
         )
+        self.vpn_connection_route = ec2.CfnVPNConnectionRoute(
+            self,
+            'BackupVPNRoute',
+            destination_cidr_block=config['network']['DestinationCIDR'],
+            vpn_connection_id=self.vpn.ref
+        )
+        
 
 
 ######### VPC endpoints ##########################
