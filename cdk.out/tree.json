@@ -2268,6 +2268,26 @@
                       "version": "2.69.0"
                     }
                   },
+                  "MyCfnVPNGateway": {
+                    "id": "MyCfnVPNGateway",
+                    "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/MyCfnVPNGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPNGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "type": "ipsec.1",
+                        "tags": [
+                          {
+                            "key": "vpnkey",
+                            "value": "vpnvalue"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPNGateway",
+                      "version": "2.69.0"
+                    }
+                  },
                   "CDKMetadata": {
                     "id": "CDKMetadata",
                     "path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata",
@@ -2599,14 +2619,6 @@
                             "blockDeviceMappings": [
                               {
                                 "deviceName": "/dev/xvda",
-                                "ebs": {
-                                  "encrypted": true,
-                                  "volumeSize": 10,
-                                  "volumeType": "gp3"
-                                }
-                              },
-                              {
-                                "deviceName": "/dev/sdg",
                                 "ebs": {
                                   "encrypted": true,
                                   "volumeSize": 10,

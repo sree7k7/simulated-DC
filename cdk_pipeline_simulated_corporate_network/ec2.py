@@ -77,14 +77,14 @@ class EC2(Stack):
                     encrypted=True
                 )
             ),
-                ec2.BlockDevice(
-                device_name="/dev/sdg",
-                volume=ec2.BlockDeviceVolume.ebs(
-                    volume_size= config['server']['volume_size'],
-                    volume_type= ec2.EbsDeviceVolumeType.GP3,
-                    encrypted=True
-                )
-            )                
+            #     ec2.BlockDevice(
+            #     device_name="/dev/sdg",
+            #     volume=ec2.BlockDeviceVolume.ebs(
+            #         volume_size= config['server']['volume_size'],
+            #         volume_type= ec2.EbsDeviceVolumeType.GP3,
+            #         encrypted=True
+            #     )
+            # )                
             ]
         )
         Tags.of(self.instance).add("shellscript", "automation")

@@ -17,7 +17,7 @@
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/5e8e8fdb9424d8fbbf5a75d7b1728ffc8e823a2314684159404b8c3da71a53d5.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/a9f1b527608fc945e23371e9b5f318c44b196779c160ea1473ede97406375975.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -136,6 +136,12 @@
             "data": "BackupSG64CB4D7C"
           }
         ],
+        "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/MyCfnVPNGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyCfnVPNGateway"
+          }
+        ],
         "/CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
@@ -191,7 +197,7 @@
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/6d846cad8ea5c7edf66751d21f97624a854a1e152ff7f7c477ba71de9ebdd3fe.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-619831221558-eu-central-1/55ce9f2ba0f8cec02e8b5e500592b37d4316da92465c1a0dc3e33df29e942eac.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [

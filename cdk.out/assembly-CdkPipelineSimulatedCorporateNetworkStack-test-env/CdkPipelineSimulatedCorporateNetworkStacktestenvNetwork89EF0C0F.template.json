@@ -330,10 +330,25 @@
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupSG/Resource"
    }
   },
+  "MyCfnVPNGateway": {
+   "Type": "AWS::EC2::VPNGateway",
+   "Properties": {
+    "Type": "ipsec.1",
+    "Tags": [
+     {
+      "Key": "vpnkey",
+      "Value": "vpnvalue"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/MyCfnVPNGateway"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22QQU/DMAyFf8vuaYAyIXGcepi4oKhFvaI0GOattavE2VRN+++EdqNU4pTnT8/PdnL99KzvV/YUMvdxyFps9LkS6w4qoXdwuT7XvVPFJ9WmUCY2LboqNgTyw2ZVchR4s00LM5/ZJgR2aAWZfs3KeDxagTnjhQR80ttET3a4Dr1WG0lb7TogUXVPBROBu+UVMQh34BeNr0vPAkwLpJxlx7/V6DWee/s1HVCBix5l2HqO/XjtX3BRJQSO3o0fcdMXZQbZMd096odcr1f7gJj5SIId6HJ6vwGSqi/riwEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22QQWvDMAyFf0vvjrdlUNix5FB2GSYpuQ5H01a3iRRsuSWU/vd5SbsssJOfPp6eJOd6/aIfV/YcMvg4Zq1r9KUSC0eV0DtCri91D6r4pNoUysSmdVDFhlB+2KxKjoI727Q485ltQmBwVhzTr1kZ705WcM54JUGf9DbRsx1uQ2/VRtJW+w5JVN1TwUQI97wiBuEO/aLxbelZgGmBlLPs+LcavcZzb7+mAyqE6J0MW8+xH6/9C66qxMDRw/gRd31VZpA908Ozfsr1enUIzmU+krgOdTm93xJjf8WLAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata/Default"
