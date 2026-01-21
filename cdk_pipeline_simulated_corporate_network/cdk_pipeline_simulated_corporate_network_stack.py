@@ -13,6 +13,7 @@ class CdkPipelineSimulatedCorporateNetworkStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
+        ## repo from aws code repo
         self.backend_repository =  codecommit.Repository.from_repository_name(
             self,
             "Simulated-network",
