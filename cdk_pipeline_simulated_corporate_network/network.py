@@ -92,11 +92,17 @@ class Network(cdk.Stack):
         )
         # Across all tunnels in the account/region, the same customer gateway IP address must not be repeated.
         # Across all tunnels in the account/region, the same destination CIDR must not be repeated.
-        
+        self.cgw = ec2.CfnCustomerGateway(                                                                                          
+            self,                                                                                                                   
+            'BackupCGW',                                                                                                            
+            bgp_asn=65000, # Standard ASN for static routing                                                                        
+            ip_address=config['network']['CustomerGatewayIP'],                                                                      
+            type='ipsec.1'                                                                                                          
+        ) 
         self.vpn = ec2.CfnVPNConnection(
             self,
             'BackupVPN',
-            customer_gateway_id=config['network']['CustomerGatewayIP'],
+            customer_gateway_id=self.cgw.ref,
             static_routes_only=True,
             type='ipsec.1',
             # vpn_gateway_id='vgw-0a6c7b1d5c2b0f8c5'
