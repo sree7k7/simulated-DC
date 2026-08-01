@@ -8,7 +8,6 @@ on:
                                                                                                                                         
 env:                                                                                                                                
       AWS_REGION: us-east-1           
-  
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}                                                                                                  
                                                                                                                                         
@@ -25,15 +24,7 @@ jobs:
         steps:                                                                                                                          
           - name: Checkout code                                                                                                         
             uses: actions/checkout@v4                                                                                                   
-                                                                                                                                        
-          - name: Configure AWS credentials via OIDC                                                                                    
-            uses: aws-actions/configure-aws-credentials@v4                                                                              
-            with:                                                                                                                       
-              # TODO: Create this IAM Role in your AWS account (267083758392)                                                           
-              # and establish an OIDC trust relationship with GitHub Actions.                                                           
-              role-to-assume: ${{ secrets.AWS_ROLE_ARN }}                                              
-              aws-region: ${{ env.AWS_REGION }}                                                                                         
-                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                               
           - name: Set up Node.js                                                                                                        
             uses: actions/setup-node@v4                                                                                                 
             with:                                                                                                                       
@@ -72,6 +63,13 @@ jobs:
           # # Uncomment the step below (and comment Option 1) if you want GitHub Actions to 
           # # deploy the actual 'test-env' infrastructure and act as your sole CI/CD tool.
           # # ==============================================================================
-          - name: Deploy Infrastructure
-            # This deploys all stacks defined in app.py
-            run: cdk deploy --all --require-approval never
+          - name: Configure AWS Credentials via OIDC
+            uses: aws-actions/configure-aws-credentials@v4
+            with:
+              role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+              aws-region: us-east-1
+
+          - name: CDK Deploy
+            env:
+              IMAGE_TAG: ${{ github.sha }} # This 
+            run: npx aws-cdk deploy --all --require-approval never --concurrency 5
