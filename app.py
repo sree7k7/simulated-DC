@@ -1,6 +1,7 @@
 import aws_cdk as cdk                                                                                                               
 from cdk_pipeline_simulated_corporate_network.network import Network                                                                
-from cdk_pipeline_simulated_corporate_network.ec2 import EC2                                                                        
+from cdk_pipeline_simulated_corporate_network.ec2 import EC2            
+import os                                                            
                                                                 
 app = cdk.App()
 aws_account = os.getenv('AWS_ACCOUNT_ID', 'DEFAULT_ACCOUNT_ID_OR_FAIL')                                                             

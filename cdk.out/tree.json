@@ -48,7 +48,7 @@
                         "vpcId": {
                           "Ref": "BackupVPC91AA08F9"
                         },
-                        "availabilityZone": "us-east-1a",
+                        "availabilityZone": "dummy1a",
                         "cidrBlock": "10.4.0.0/26",
                         "mapPublicIpOnLaunch": true,
                         "tags": [
@@ -160,7 +160,7 @@
                         "vpcId": {
                           "Ref": "BackupVPC91AA08F9"
                         },
-                        "availabilityZone": "us-east-1a",
+                        "availabilityZone": "dummy1a",
                         "cidrBlock": "10.4.0.64/26",
                         "mapPublicIpOnLaunch": false,
                         "tags": [
@@ -353,7 +353,7 @@
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::EC2::VPNConnection",
               "aws:cdk:cloudformation:props": {
-                "customerGatewayId": "83.221.156.77",
+                "customerGatewayId": "127.0.0.1",
                 "type": "ipsec.1",
                 "staticRoutesOnly": true
               }
@@ -707,7 +707,7 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
                   "aws:cdk:cloudformation:props": {
-                    "availabilityZone": "us-east-1a",
+                    "availabilityZone": "dummy1a",
                     "blockDeviceMappings": [
                       {
                         "deviceName": "/dev/xvda",
