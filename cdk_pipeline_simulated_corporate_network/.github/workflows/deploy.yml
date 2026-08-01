@@ -7,7 +7,10 @@ on:
       workflow_dispatch: # Allows you to manually trigger the workflow from the GitHub UI                                               
                                                                                                                                         
 env:                                                                                                                                
-      AWS_REGION: us-east-1                                                                                                             
+      AWS_REGION: us-east-1           
+  
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}                                                                                                  
                                                                                                                                         
     # Required permissions for GitHub to request the OIDC token from AWS                                                                
 permissions:                                                                                                                        
@@ -28,7 +31,7 @@ jobs:
             with:                                                                                                                       
               # TODO: Create this IAM Role in your AWS account (267083758392)                                                           
               # and establish an OIDC trust relationship with GitHub Actions.                                                           
-              role-to-assume: arn:aws:iam::267083758392:role/aws-to-github                                                
+              role-to-assume: arn:aws:iam::${{ env.AWS_REGION }}:role/aws-to-github                                                
               aws-region: ${{ env.AWS_REGION }}                                                                                         
                                                                                                                                         
           - name: Set up Node.js                                                                                                        
@@ -42,7 +45,7 @@ jobs:
           - name: Set up Python                                                                                                         
             uses: actions/setup-python@v5                                                                                               
             with:                                                                                                                       
-              python-version: '3.9' # Matches the likely python version based on standard CDK init                                      
+              python-version: '3.12' # Matches the likely python version based on standard CDK init                                      
               cache: 'pip'                                                                                                              
                                                                                                                                         
           - name: Install Python dependencies                                                                                           
@@ -51,7 +54,10 @@ jobs:
               pip install -r requirements.txt                                                                                           
                                                                                                                                         
           - name: CDK Synth                                                                                                             
-            run: cdk synth                                                                                                              
+            run: cdk synth         
+            env:
+              AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+              CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}                                                                                                     
                                                                                                                                         
           # # ==============================================================================                                              
           # # OPTION 1: Deploy the AWS CodePipeline stack itself

@@ -3,14 +3,15 @@ from cdk_pipeline_simulated_corporate_network.network import Network
 from cdk_pipeline_simulated_corporate_network.ec2 import EC2                                                                        
                                                                 
 app = cdk.App()
-
+aws_account = os.getenv('AWS_ACCOUNT_ID', 'DEFAULT_ACCOUNT_ID_OR_FAIL')                                                             
+customer_gateway_ip = os.getenv('CUSTOMER_GATEWAY_IP', '127.0.0.1') 
 
 test_config = {                                                                                                                     
-        'AWS_Account': '267083758392',                                                                                                  
+        'AWS_Account': aws_account,                                                                                                  
         'network': {                                                                                                                    
             'Vpc_CIDR': '10.4.0.0/24',                                                                                                  
             'cidr_mask': 26,                                                                                                            
-            'CustomerGatewayIP': '83.221.156.77',                                                                                       
+            'CustomerGatewayIP': customer_gateway_ip,                                                                                       
             'DestinationCIDR': '192.168.31.101/32',                                                                                     
             'staticRoute': '192.168.31.101/32',                                                                                         
         },                                                                                                                              
