@@ -42,9 +42,9 @@ class EC2(Stack):
             destination=ec2.FlowLogDestination.to_cloud_watch_logs(log_group, self.role),
             traffic_type=ec2.FlowLogTrafficType.ALL
         )
-        self.parameter = ssm.StringParameter.from_string_parameter_attributes(self, "UserString",
-            parameter_name="/dnac/user/passwd"
-        ).string_value
+        # self.parameter = ssm.StringParameter.from_string_parameter_attributes(self, "UserString",
+        #     parameter_name="/dnac/user/passwd"
+        # ).string_value
         #######################user data############
         user_data = f'''
             #!/bin/bash      
