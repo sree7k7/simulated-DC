@@ -24,7 +24,7 @@
     "VpcId": {
      "Ref": "BackupVPC91AA08F9"
     },
-    "AvailabilityZone": "eu-central-1a",
+    "AvailabilityZone": "us-east-1a",
     "CidrBlock": "10.4.0.0/26",
     "MapPublicIpOnLaunch": true,
     "Tags": [
@@ -101,7 +101,7 @@
     "VpcId": {
      "Ref": "BackupVPC91AA08F9"
     },
-    "AvailabilityZone": "eu-central-1a",
+    "AvailabilityZone": "us-east-1a",
     "CidrBlock": "10.4.0.64/26",
     "MapPublicIpOnLaunch": false,
     "Tags": [
@@ -231,21 +231,6 @@
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupSG/Resource"
    }
   },
-<<<<<<< HEAD
-  "MyCfnVPNGateway": {
-   "Type": "AWS::EC2::VPNGateway",
-   "Properties": {
-    "Type": "ipsec.1",
-    "Tags": [
-     {
-      "Key": "vpnkey",
-      "Value": "vpnvalue"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/MyCfnVPNGateway"
-=======
   "BackupVPN": {
    "Type": "AWS::EC2::VPNConnection",
    "Properties": {
@@ -267,17 +252,12 @@
    },
    "Metadata": {
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/BackupVPNRoute"
->>>>>>> 7b0f4d6303452a5eaf4e47083fe9f56e8c9c4266
    }
   },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-<<<<<<< HEAD
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/22QQWvDMAyFf0vvjrdlUNix5FB2GSYpuQ5H01a3iRRsuSWU/vd5SbsssJOfPp6eJOd6/aIfV/YcMvg4Zq1r9KUSC0eV0DtCri91D6r4pNoUysSmdVDFhlB+2KxKjoI727Q485ltQmBwVhzTr1kZ705WcM54JUGf9DbRsx1uQ2/VRtJW+w5JVN1TwUQI97wiBuEO/aLxbelZgGmBlLPs+LcavcZzb7+mAyqE6J0MW8+xH6/9C66qxMDRw/gRd31VZpA908Ozfsr1enUIzmU+krgOdTm93xJjf8WLAQAA"
-=======
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OwarCQAxFv8X9dPRVEVxKF+JGhla6lWnMw9iakZmMUsR/t/bpK7rKzSHk3FTPF3oysteQwL5OGqr0rRALterQDiHVt/IMKvvl0mTKxKohKGLFKE82pNxFwa2tGhz4wJYhOCAr5Pj/WBlPFys4/FizoO/yqqNX276kr20pXavDCVlUgRA9SbvyLp573TcozSZzzAhv4wfo9XeVY3DRQ1/4ne/KtHJwPJ7qn1TPRsdAlPjIQifU+d98AG4UzJ8zAQAA"
->>>>>>> 7b0f4d6303452a5eaf4e47083fe9f56e8c9c4266
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OTYvCQAyGf4v36ehWWNij9CB7kaGVXpc0RozWjMxkLEX874v1o+gpbx5Cnje33z92NoEuZrg5ZC039lIp4MFAF/8Ic3upT2iKrdSuMC41LWOVGiG9sTGVPimtoWlp5CNbxOiRQdnL69i4wGdQGn/8ilIQ0iUoddA/pI9toQq4O5KoqQhTYO2XwafToPsEtVsVXoTwaXwDg/5qSoo+BRwKP/PVuF53XqZz+5Xb+WQfmbOQRPlItrzPfy4qFfozAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/test-env/Network/CDKMetadata/Default"

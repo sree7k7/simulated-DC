@@ -8,7 +8,7 @@
       "aws.codecommit"
      ],
      "resources": [
-      "arn:aws:codecommit:eu-central-1:619831221558:simulated-network"
+      "arn:aws:codecommit:us-east-1:267083758392:simulated-network"
      ],
      "detail-type": [
       "CodeCommit Repository State Change"
@@ -30,7 +30,7 @@
        "Fn::Join": [
         "",
         [
-         "arn:aws:codepipeline:eu-central-1:619831221558:",
+         "arn:aws:codepipeline:us-east-1:267083758392:",
          {
           "Ref": "simulatednetworkPipeline26CD52AE"
          }
@@ -60,7 +60,7 @@
        "Action": "kms:*",
        "Effect": "Allow",
        "Principal": {
-        "AWS": "arn:aws:iam::619831221558:root"
+        "AWS": "arn:aws:iam::267083758392:root"
        },
        "Resource": "*"
       },
@@ -79,7 +79,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         }
@@ -202,7 +202,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         }
@@ -340,7 +340,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         }
@@ -490,7 +490,7 @@
             {
              "Ref": "AWS::Partition"
             },
-            ":iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1"
+            ":iam::267083758392:role/cdk-hnb659fds-cfn-exec-role-267083758392-us-east-1"
            ]
           ]
          },
@@ -512,7 +512,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         },
@@ -539,7 +539,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         },
@@ -563,7 +563,7 @@
             {
              "Ref": "AWS::Partition"
             },
-            ":iam::619831221558:role/cdk-hnb659fds-cfn-exec-role-619831221558-eu-central-1"
+            ":iam::267083758392:role/cdk-hnb659fds-cfn-exec-role-267083758392-us-east-1"
            ]
           ]
          },
@@ -585,7 +585,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         },
@@ -612,7 +612,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::619831221558:role/cdk-hnb659fds-deploy-role-619831221558-eu-central-1"
+           ":iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1"
           ]
          ]
         },
@@ -657,7 +657,7 @@
        "Action": "sts:AssumeRole",
        "Effect": "Allow",
        "Principal": {
-        "AWS": "arn:aws:iam::619831221558:root"
+        "AWS": "arn:aws:iam::267083758392:root"
        }
       }
      ],
@@ -735,7 +735,7 @@
         "codecommit:UploadArchive"
        ],
        "Effect": "Allow",
-       "Resource": "arn:aws:codecommit:eu-central-1:619831221558:simulated-network"
+       "Resource": "arn:aws:codecommit:us-east-1:267083758392:simulated-network"
       }
      ],
      "Version": "2012-10-17"
@@ -783,7 +783,7 @@
         "Fn::Join": [
          "",
          [
-          "arn:aws:codepipeline:eu-central-1:619831221558:",
+          "arn:aws:codepipeline:us-east-1:267083758392:",
           {
            "Ref": "simulatednetworkPipeline26CD52AE"
           }
@@ -842,7 +842,7 @@
          "Fn::Join": [
           "",
           [
-           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           "arn:aws:logs:us-east-1:267083758392:log-group:/aws/codebuild/",
            {
             "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
            },
@@ -854,7 +854,7 @@
          "Fn::Join": [
           "",
           [
-           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           "arn:aws:logs:us-east-1:267083758392:log-group:/aws/codebuild/",
            {
             "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
            }
@@ -876,7 +876,7 @@
         "Fn::Join": [
          "",
          [
-          "arn:aws:codebuild:eu-central-1:619831221558:report-group/",
+          "arn:aws:codebuild:us-east-1:267083758392:report-group/",
           {
            "Ref": "simulatednetworkPipelineBuildSynthCdkBuildProject17D81FE2"
           },
@@ -1004,7 +1004,7 @@
        },
        "Effect": "Allow",
        "Principal": {
-        "AWS": "arn:aws:iam::619831221558:root"
+        "AWS": "arn:aws:iam::267083758392:root"
        }
       }
      ],
@@ -1093,7 +1093,7 @@
          "Fn::Join": [
           "",
           [
-           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           "arn:aws:logs:us-east-1:267083758392:log-group:/aws/codebuild/",
            {
             "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
            },
@@ -1105,7 +1105,7 @@
          "Fn::Join": [
           "",
           [
-           "arn:aws:logs:eu-central-1:619831221558:log-group:/aws/codebuild/",
+           "arn:aws:logs:us-east-1:267083758392:log-group:/aws/codebuild/",
            {
             "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
            }
@@ -1127,7 +1127,7 @@
         "Fn::Join": [
          "",
          [
-          "arn:aws:codebuild:eu-central-1:619831221558:report-group/",
+          "arn:aws:codebuild:us-east-1:267083758392:report-group/",
           {
            "Ref": "simulatednetworkUpdatePipelineSelfMutation236C3959"
           },
@@ -1148,7 +1148,7 @@
         }
        },
        "Effect": "Allow",
-       "Resource": "arn:*:iam::619831221558:role/*"
+       "Resource": "arn:*:iam::267083758392:role/*"
       },
       {
        "Action": [
@@ -1260,7 +1260,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QwQ6CMAyGn8V7qYqJiUfl6IXgAxgcNRbGRtimIcveXSYQPH1//7bpv6V4POFuU35MIqomkfxAf7OlaKAgo10vCMbe3dOblDXoCycJsqeKDCB0RR13JFkR+nxWsb/oAE07rl1piG7EWXJpYvETAcwB/cWJhmw0ZzUh15LFsNpTHYDLdkyi5ySR6+QyE6M9HMtqzZX3uibxOzPLEGCJbzAbN/6fsHxAgHywL622B9yneNzUhjnpnbLcEhYTvwyWcLlHAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02Qy47CMAxFv4W9a2aohMSSYTmbqnwASlOjMU0TVCegKsq/o/Shzuoc31jKTQ54POHXTr2l0G1XGG4wXr3SHdQkLgyaQL3lFulF1gvGOhiCy91mJtCupSc/ybAljNVi+Xz1BF0vGH9pzGnG2bCSPEySQEqMP0F35HO42IzKGdbjFs9zAlY9xtotTTK3zXUnV2sCm3brVQ3uQXq6ZtGUYK0veHEt/X/C+gEJqtH/Obsv8fuA5e4hzMUQrOeesJ75Acxh+fJHAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "CdkPipelineSimulatedCorporateNetworkStack/CDKMetadata/Default"
