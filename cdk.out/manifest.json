@@ -11,20 +11,20 @@
     },
     "SimulatedNetworkStack": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://DEFAULT_ACCOUNT_ID_OR_FAIL/us-east-1",
+      "environment": "aws://267083758392/us-east-1",
       "properties": {
         "templateFile": "SimulatedNetworkStack.template.json",
         "validateOnSynth": false,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-deploy-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-cfn-exec-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1/a7b952df59ea3a7f5dd77d38b50a15056275b9b6ca80d3700eeb25562355f96f.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::267083758392:role/cdk-hnb659fds-cfn-exec-role-267083758392-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-267083758392-us-east-1/97b14fdbaefdcc6c24cdf758fd8a90a88466a25cff06b013ae9573d88578810a.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
           "SimulatedNetworkStack.assets"
         ],
         "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-lookup-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1",
+          "arn": "arn:${AWS::Partition}:iam::267083758392:role/cdk-hnb659fds-lookup-role-267083758392-us-east-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         }
@@ -33,25 +33,6 @@
         "SimulatedNetworkStack.assets"
       ],
       "metadata": {
-        "/SimulatedNetworkStack": [
-          {
-            "type": "aws:cdk:error",
-            "data": "Need to perform AWS calls for account DEFAULT_ACCOUNT_ID_OR_FAIL, but no credentials have been configured",
-            "trace": [
-              "Annotations.addMessage (/tmp/jsii-kernel-ZAbxFB/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1071)",
-              "Annotations.addError (/tmp/jsii-kernel-ZAbxFB/node_modules/aws-cdk-lib/core/lib/annotations.js:1:669)",
-              "ContextProvider.getValue (/tmp/jsii-kernel-ZAbxFB/node_modules/aws-cdk-lib/core/lib/context-provider.js:2:1160)",
-              "get availabilityZones (/tmp/jsii-kernel-ZAbxFB/node_modules/aws-cdk-lib/core/lib/stack.js:1:8677)",
-              "new Vpc (/tmp/jsii-kernel-ZAbxFB/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:9378)",
-              "Kernel._Kernel_create (/tmp/tmp678ihq8e/lib/program.js:1:62551)",
-              "Kernel.create (/tmp/tmp678ihq8e/lib/program.js:1:53289)",
-              "KernelHost.processRequest (/tmp/tmp678ihq8e/lib/program.js:1:228006)",
-              "KernelHost.run (/tmp/tmp678ihq8e/lib/program.js:1:226990)",
-              "Immediate._onImmediate (/tmp/tmp678ihq8e/lib/program.js:1:227034)",
-              "process.processImmediate (node:internal/timers:485:21)"
-            ]
-          }
-        ],
         "/SimulatedNetworkStack/BackupVPC/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -179,20 +160,20 @@
     },
     "SimulatedEC2Stack": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://DEFAULT_ACCOUNT_ID_OR_FAIL/us-east-1",
+      "environment": "aws://267083758392/us-east-1",
       "properties": {
         "templateFile": "SimulatedEC2Stack.template.json",
         "validateOnSynth": false,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-deploy-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-cfn-exec-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1/62b17ab73f085c6ed18ba67d9bc3b1536551812a083921ddac8da4ed32da0441.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::267083758392:role/cdk-hnb659fds-deploy-role-267083758392-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::267083758392:role/cdk-hnb659fds-cfn-exec-role-267083758392-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-267083758392-us-east-1/c7bdce71c74981be4213fb20581aaf2697a97faa7a1fcad7645e46adec77ea04.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
           "SimulatedEC2Stack.assets"
         ],
         "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-lookup-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1",
+          "arn": "arn:${AWS::Partition}:iam::267083758392:role/cdk-hnb659fds-lookup-role-267083758392-us-east-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         }
@@ -277,16 +258,5 @@
         "file": "tree.json"
       }
     }
-  },
-  "missing": [
-    {
-      "key": "availability-zones:account=DEFAULT_ACCOUNT_ID_OR_FAIL:region=us-east-1",
-      "provider": "availability-zones",
-      "props": {
-        "account": "DEFAULT_ACCOUNT_ID_OR_FAIL",
-        "region": "us-east-1",
-        "lookupRoleArn": "arn:${AWS::Partition}:iam::DEFAULT_ACCOUNT_ID_OR_FAIL:role/cdk-hnb659fds-lookup-role-DEFAULT_ACCOUNT_ID_OR_FAIL-us-east-1"
-      }
-    }
-  ]
+  }
 }
