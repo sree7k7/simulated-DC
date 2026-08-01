@@ -31,7 +31,7 @@ jobs:
             with:                                                                                                                       
               # TODO: Create this IAM Role in your AWS account (267083758392)                                                           
               # and establish an OIDC trust relationship with GitHub Actions.                                                           
-              role-to-assume: arn:aws:iam::${{ env.AWS_REGION }}:role/aws-to-github                                                
+              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/aws-to-github                                                
               aws-region: ${{ env.AWS_REGION }}                                                                                         
                                                                                                                                         
           - name: Set up Node.js                                                                                                        
