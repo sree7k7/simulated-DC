@@ -1,75 +1,63 @@
-name: Deploy CDK Infrastructure                                                                                                     
+    name: Deploy CDK Infrastructure                                                                                                     
                                                                                                                                         
-on:                                                                                                                                 
-      push:                                                                                                                             
-        branches:                                                                                                                       
-          - main # Trigger the workflow on pushes to the main branch                                                                    
-      workflow_dispatch: # Allows you to manually trigger the workflow from the GitHub UI                                               
+    on:                                                                                                                                 
+          push:                                                                                                                         
+            branches:                                                                                                                   
+              - main                                                                                                                    
+          workflow_dispatch:                                                                                                            
                                                                                                                                         
-env:                                                                                                                                
-      AWS_REGION: us-east-1           
-      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}                                                                                                  
+    env:                                                                                                                                
+          AWS_REGION: us-east-1                                                                                                         
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}                                                                                 
+          CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}                                                                       
                                                                                                                                         
-    # Required permissions for GitHub to request the OIDC token from AWS                                                                
-permissions:                                                                                                                        
-      id-token: write                                                                                                                   
-      contents: read                                                                                                                    
+    permissions:                                                                                                                        
+          id-token: write                                                                                                               
+          contents: read                                                                                                                
                                                                                                                                         
-jobs:                                                                                                                               
-      deploy:                                                                                                                           
-        name: Synth and Deploy CDK                                                                                                      
-        runs-on: ubuntu-latest                                                                                                          
+    jobs:                                                                                                                               
+          deploy:                                                                                                                       
+            name: Synth and Deploy CDK                                                                                                  
+            runs-on: ubuntu-latest                                                                                                      
                                                                                                                                         
-        steps:                                                                                                                          
-          - name: Checkout code                                                                                                         
-            uses: actions/checkout@v4                                                                                                   
-                                                                                                                                                                                                                                                                                                                                               
-          - name: Set up Node.js                                                                                                        
-            uses: actions/setup-node@v4                                                                                                 
-            with:                                                                                                                       
-              node-version: '24'                                                                                                        
+            steps:                                                                                                                      
+              - name: Checkout code                                                                                                     
+                uses: actions/checkout@v4                                                                                               
                                                                                                                                         
-          - name: Install AWS CDK                                                                                                       
-            run: npm install -g aws-cdk                                                                                                 
+              # AWS Authentication MUST happen before CDK commands                                                                      
+              - name: Configure AWS Credentials via OIDC                                                                                
+                uses: aws-actions/configure-aws-credentials@v4                                                                          
+                with:                                                                                                                   
+                  role-to-assume: ${{ secrets.AWS_ROLE_ARN }}                                                                           
+                  aws-region: us-east-1                                                                                                 
                                                                                                                                         
-          - name: Set up Python                                                                                                         
-            uses: actions/setup-python@v5                                                                                               
-            with:                                                                                                                       
-              python-version: '3.12' # Matches the likely python version based on standard CDK init                                      
-              cache: 'pip'                                                                                                              
+              - name: Set up Node.js                                                                                                    
+                uses: actions/setup-node@v4                                                                                             
+                with:                                                                                                                   
+                  node-version: '20'                                                                                                    
                                                                                                                                         
-          - name: Install Python dependencies                                                                                           
-            run: |                                                                                                                      
-              python -m pip install --upgrade pip                                                                                       
-              pip install -r requirements.txt                                                                                           
-                                                                                                                                        
-          - name: CDK Synth                                                                                                             
-            run: cdk synth         
-            env:
-              AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-              CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}                                                                                                     
-                                                                                                                                        
-          # # ==============================================================================                                              
-          # # OPTION 1: Deploy the AWS CodePipeline stack itself
-          # # Use this if your source code still lives in AWS CodeCommit and you just want 
-          # # GitHub Actions to update the pipeline definition.
-          # # ==============================================================================
-          # - name: CDK Deploy CodePipeline Stack
-          #   run: cdk deploy CdkPipelineSimulatedCorporateNetworkStack --require-approval never
+              - name: Install AWS CDK                                                                                                   
+                run: npm install -g aws-cdk                                                                                             
   
-          # # ==============================================================================
-          # # OPTION 2: Deploy the nested stage stacks directly (Bypass AWS CodePipeline)
-          # # Uncomment the step below (and comment Option 1) if you want GitHub Actions to 
-          # # deploy the actual 'test-env' infrastructure and act as your sole CI/CD tool.
-          # # ==============================================================================
-          - name: Configure AWS Credentials via OIDC
-            uses: aws-actions/configure-aws-credentials@v4
-            with:
-              role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-              aws-region: us-east-1
-
-          - name: CDK Deploy
-            env:
-              IMAGE_TAG: ${{ github.sha }} # This 
-            run: npx aws-cdk deploy --all --require-approval never --concurrency 5
+              - name: Set up Python
+                uses: actions/setup-python@v5
+                with:
+                  python-version: '3.12' 
+                  cache: 'pip'
+  
+              - name: Install Python dependencies
+                run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+  
+              - name: CDK Synth
+                run: cdk synth         
+                env:
+                  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+                  CUSTOMER_GATEWAY_IP: ${{ secrets.CUSTOMER_GATEWAY_IP }}
+      
+              - name: CDK Deploy
+                env:
+                  IMAGE_TAG: ${{ github.sha }} 
+                # Because we installed CDK globally, we can just use cdk deploy
+                run: cdk deploy --all --require-approval never --concurrency 5
